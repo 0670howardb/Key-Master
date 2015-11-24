@@ -30,3 +30,23 @@
 
 # Debug files
 *.dSYM/
+*.crf
+*.d
+*.htm
+KeyMaster.map
+*.uvoptx
+KeyMaster.uvprojx
+*.lst
+Objects/KeyMaster_Target 1.dep
+*.lnp
+*.axf
+KeyMaster_Target 1.dep
+*.Brandon Howard
+JLinkSettings.ini
+*.txt
+GLCD.h
+GLCD_LPC1700.c
+RTE/RTE_Components.h
+startup_LPC17xx.s
+system_LPC17xx.c
+Font_24x16.h

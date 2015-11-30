@@ -7,6 +7,7 @@
 
 void fillSquare(int, int);
 void setupGrid(void);
+void drawScreen(void);
 
 extern int scaledX;
 extern int scaledY;

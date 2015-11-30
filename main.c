@@ -33,17 +33,10 @@ int main (void) {
 		handleKeyPress();
 		
 		if (render == 1) {
-			
+			updateQueues();
+			drawScreen();
 			render = 0;
-		}
-	
-		
-		
-		
-			//printKeyStatus();
-		  //printTargetAndCurrent();
-      //printHealth();
-		
+		}		
 	}
 }
 

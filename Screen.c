@@ -33,3 +33,7 @@ void setupGrid() {
 	scaledX = SCREEN_WIDTH / PIXEL_SIZE;
 	scaledY = SCREEN_HEIGHT / PIXEL_SIZE;
 }
+
+void drawScreen() {
+	
+}

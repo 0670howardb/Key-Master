@@ -1,7 +1,9 @@
 #ifndef _GAME_H
 #define _GAME_H
 
-#define MAX_HEALTH 20
+#define SCREEN_WIDTH 320
+#define SCREEN_HEIGHT 240
+#define MAX_HEALTH 8
 
 void compareTargetAndActual(void);
 

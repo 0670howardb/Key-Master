@@ -9,6 +9,7 @@
 #include "GLCD.h"
 #include "Piano.h"
 #include "Game.h"
+#include "Screen.h"
 
 void printKeyStatus(void);
 void printTargetAndCurrent(void);
@@ -22,6 +23,7 @@ int main (void) {
 	GLCD_Init();
 	GLCD_Clear(White);
 	Piano_Init();
+	setupGrid();
 	
 	GLCD_SetTextColor(Black);
 	GLCD_SetBackColor(White);
@@ -29,9 +31,19 @@ int main (void) {
   while (1) {
 		checkKeys();
 		handleKeyPress();
-		printKeyStatus();
-		printTargetAndCurrent();
-		printHealth();
+		
+		if (render == 1) {
+			
+			render = 0;
+		}
+	
+		
+		
+		
+			//printKeyStatus();
+		  //printTargetAndCurrent();
+      //printHealth();
+		
 	}
 }
 

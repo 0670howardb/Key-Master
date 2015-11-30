@@ -8,6 +8,7 @@
 #include "Piano.h"
 #include "Game.h"
 #include "Songs.h"
+#include "Screen.h"
 
 uint16_t keysToPlay = 0;
 short state = 0;
@@ -31,13 +32,16 @@ void SysTick_Handler (void) {
 		iNote++;
 		keysToPlay = marryHadALittleLamb[iNote];
 		counter = 0;
+		render = 1;
 	}
 	
 }
 
 void compareTargetAndActual() {
 	if (keysToPlay == keysPressed) { // Success
-		if (health < MAX_HEALTH) { health++; }
+		if (health < MAX_HEALTH) { 
+			health++; 
+		}
 	} else { // Fail
 		health--;
 	} 

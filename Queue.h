@@ -6,12 +6,13 @@
 struct queue {
 	int queue[QUEUE_LENGTH];
 	int previousQueue[QUEUE_LENGTH];
-	unsigned short color activeColor;
-	unsigned short color sharpColor;
+	unsigned short activeColor;
+	unsigned short sharpColor;
 	int y;
 };
 
 void enqueue(struct queue*, int);
 int dequeue(struct queue*);
+void initQueues(void);
 
 #endif

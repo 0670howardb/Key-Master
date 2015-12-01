@@ -10,6 +10,7 @@
 #include "Piano.h"
 #include "Game.h"
 #include "Screen.h"
+#include "Queue.h"
 
 void printKeyStatus(void);
 void printTargetAndCurrent(void);
@@ -24,6 +25,7 @@ int main (void) {
 	GLCD_Clear(White);
 	Piano_Init();
 	setupGrid();
+	initQueues();
 	
 	GLCD_SetTextColor(Black);
 	GLCD_SetBackColor(White);

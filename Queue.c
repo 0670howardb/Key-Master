@@ -35,21 +35,17 @@ int dequeue(struct queue *q) {
 }
 
 void initQueues() {
-	queues[7].activeColor = Cyan;
-	queues[6].activeColor = DarkGreen;
-	queues[5].activeColor = Purple;
-	queues[4].activeColor = Red;
-	queues[3].activeColor = Navy;
-	queues[2].activeColor = Yellow;
-	queues[1].activeColor = Green;
-	queues[0].activeColor = Blue;
-	
-	queues[7].sharpColor = Black;
-	queues[6].sharpColor = Black;
-	queues[5].sharpColor = Black;
-	queues[4].sharpColor = Black;
-	queues[3].sharpColor = Black;
-	queues[2].sharpColor = Black;
-	queues[1].sharpColor = Black;
-	queues[0].sharpColor = Black;
+	queues[12].activeColor = Yellow;
+	queues[11].activeColor = Orange;
+	queues[10].activeColor = Red;
+	queues[9].activeColor  = Purple;
+	queues[8].activeColor  = Olive;
+	queues[7].activeColor  = Blue;
+	queues[6].activeColor  = Green;
+	queues[5].activeColor  = Yellow;
+	queues[4].activeColor  = Orange;
+	queues[3].activeColor  = Red;
+	queues[2].activeColor  = Purple;
+	queues[1].activeColor  = Olive;
+	queues[0].activeColor  = Maroon;
 }

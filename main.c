@@ -21,15 +21,13 @@ unsigned char printString[15];
 int main (void) {
   SystemInit();
 	SysTick_Config(SystemCoreClock/100);
-	GLCD_Init();
-	GLCD_Clear(White);
+	LCD_Initialization();
+	LCD_Clear(Black);
 	Piano_Init();
 	setupGrid();
 	initQueues();
 	
-	GLCD_SetTextColor(Black);
-	GLCD_SetBackColor(White);
-	
+	printKeyStatus();
   while (1) {
 		checkKeys();
 		handleKeyPress();
@@ -43,42 +41,27 @@ int main (void) {
 }
 
 void printKeyStatus() {
-	sprintf((char *)printString, "C: %x", C0);
-	GLCD_DisplayString(0, 0, printString);
-	sprintf((char *)printString, "D: %x", D0);
-	GLCD_DisplayString(1, 0, printString);
-	sprintf((char *)printString, "E: %x", E0);
-	GLCD_DisplayString(2, 0, printString);
-	sprintf((char *)printString, "F: %x", F0);
-	GLCD_DisplayString(3, 0, printString);
-	sprintf((char *)printString, "G: %x", G0);
-	GLCD_DisplayString(4, 0, printString);
-	sprintf((char *)printString, "A: %x", A0);
-	GLCD_DisplayString(5, 0, printString);
-	sprintf((char *)printString, "B: %x", B0);
-	GLCD_DisplayString(6, 0, printString);
-	sprintf((char *)printString, "C: %x", C1);
-	GLCD_DisplayString(0, 13, printString);
-	sprintf((char *)printString, "C#: %x", Cs);
-	GLCD_DisplayString(0, 6, printString);
-	sprintf((char *)printString, "D#: %x", Ds);
-	GLCD_DisplayString(1, 6, printString);
-	sprintf((char *)printString, "F#: %x", Fs);
-	GLCD_DisplayString(3, 6, printString);
-	sprintf((char *)printString, "G#: %x", Gs);
-	GLCD_DisplayString(4, 6, printString);
-	sprintf((char *)printString, "A#: %x", As);
-	GLCD_DisplayString(5, 6, printString);
+	LCD_PutText(3, 10, "C", White, Black);
+	LCD_PutText(3, 30, "C#", White, Black);
+	LCD_PutText(3, 50, "D", White, Black);
+	LCD_PutText(3, 70, "D#", White, Black);
+	//GLCD_DisplayString(1, 0, "B");
+	//GLCD_DisplayString(2, 0, "A");
+	//GLCD_DisplayString(3, 0, "G");
+	//GLCD_DisplayString(4, 0, "F");
+	//GLCD_DisplayString(5, 0, "E");
+	//GLCD_DisplayString(6, 0, "D");
+	//GLCD_DisplayString(7, 0, "C");
 }
 
 void printTargetAndCurrent() {
-	sprintf((char *)printString, "Target : %x         ", keysToPlay);
-	GLCD_DisplayString(8, 0, printString);
-	sprintf((char *)printString, "Current: %x         ", keysPressed);
-	GLCD_DisplayString(9, 0, printString);
+	//sprintf((char *)printString, "Target : %x         ", keysToPlay);
+	//GLCD_DisplayString(8, 0, printString);
+	//sprintf((char *)printString, "Current: %x         ", keysPressed);
+	//GLCD_DisplayString(9, 0, printString);
 }
 
 void printHealth() {
-	sprintf((char *)printString, "Health : %d         ", health);
-	GLCD_DisplayString(7, 0, printString);
+	//sprintf((char *)printString, "Health : %d         ", health);
+	//GLCD_DisplayString(7, 0, printString);
 }

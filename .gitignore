@@ -50,3 +50,6 @@ RTE/RTE_Components.h
 startup_LPC17xx.s
 system_LPC17xx.c
 Font_24x16.h
+AsciiLib.c
+AsciiLib.h
+GLCD.c

@@ -5,7 +5,7 @@
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
 #define MAX_HEALTH 8
-#define NUMBER_OF_QUEUES 8
+#define NUMBER_OF_QUEUES 13
 
 void compareTargetAndActual(void);
 void updateQueues(void);

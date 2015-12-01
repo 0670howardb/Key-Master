@@ -15,26 +15,15 @@ int scaledY = 0;
 	 coordinate. The color must be set prior to
 	 calling this function.
 */
-void fillSquare(int x, int y) {
+void fillSquare(int x, int y, uint16_t color) {
 	int iX = 0;
 	int iY = 0;
-	x = x*PIXEL_SIZE;
-	y = y*PIXEL_SIZE;
+	x = x*PIXEL_SIZE + 20;
+	y = y*PIXEL_SIZE + 3;
 	
-	for (iX = x; iX < x + PIXEL_SIZE; iX++)
-		for (iY = y; iY < y + PIXEL_SIZE; iY++)
-			GLCD_PutPixel(iX + 20, iY); // Note: + 20 because 320%30 ~= 20, shift for writing text.
-}
-
-void fillSquareWithSharpSign(int x, int y) {
-	int iX = 0;
-	int iY = 0;
-	x = x*PIXEL_SIZE;
-	y = y*PIXEL_SIZE;
-	
-	for (iX = x; iX < x + PIXEL_SIZE; iX++)
-		for (iY = y; iY < y + PIXEL_SIZE; iY++)
-			GLCD_PutPixel(iX + 20, iY); // Note: + 20 because 320%30 ~= 20, shift for writing text.
+	for (iX = x+1; iX < x + PIXEL_SIZE; iX++)
+		for (iY = y+1; iY < y + PIXEL_SIZE; iY++)
+			 LCD_SetPoint(iX + 20, iY, color); // Note: + 20 because 320%30 ~= 20, shift for writing text.
 }
 
 /* This function maps a PIXEL_SIZE block of pixels
@@ -43,8 +32,15 @@ void fillSquareWithSharpSign(int x, int y) {
 	 fillSquare function is called.
 */
 void setupGrid() {
+	int x = 0;
+	int y = 0;
+	
 	scaledX = SCREEN_WIDTH / PIXEL_SIZE;
 	scaledY = SCREEN_HEIGHT / PIXEL_SIZE;
+	
+	for (x = 0; x < SCALED_X; x++)
+		for (y = 0; y < SCALED_Y; y++)
+			fillSquare(x, y, White);
 }
 
 void drawScreen() {
@@ -58,23 +54,17 @@ void drawScreen() {
 			if (queues[i].queue[iElement] == queues[i].previousQueue[iElement]) {
 				// Do nothing.
 			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == ACTIVE) {
-				GLCD_SetTextColor(White);
-				fillSquare(iElement, i);
+				fillSquare(iElement, i, White);
 			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == SHARP) {
-				GLCD_SetTextColor(White);
-				fillSquare(iElement, i);
+				fillSquare(iElement, i, White);
 			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == INACTIVE) {
-				GLCD_SetTextColor(queues[i].activeColor);
-				fillSquare(iElement, i);
+				fillSquare(iElement, i, queues[i].activeColor);
 			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == SHARP) {
-				GLCD_SetTextColor(queues[i].activeColor);
-				fillSquare(iElement, i);
+				fillSquare(iElement, i, queues[i].activeColor);
 			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == INACTIVE) {
-				GLCD_SetTextColor(queues[i].sharpColor);
-				fillSquareWithSharpSign(iElement, i);
+				fillSquare(iElement, i, queues[i].sharpColor);
 			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == ACTIVE) {
-				GLCD_SetTextColor(queues[i].sharpColor);
-				fillSquareWithSharpSign(iElement, i);
+				fillSquare(iElement, i, queues[i].sharpColor);
 			}
 		}
 	}

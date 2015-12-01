@@ -13,7 +13,7 @@
 
 uint16_t keysToPlay = 0;
 short state = 0;
-short iNote = -1;
+short iNote = 0;
 int counter = 0;
 short health = MAX_HEALTH;
 
@@ -61,34 +61,34 @@ void updateQueues() {
 	
 	// Add proper values to queue
 	if ((keysToPlay & 0x1000) == 0x1000) { // C0
-		enqueue(&queues[7], ACTIVE);
+		enqueue(&queues[12], ACTIVE);
 	}
 	if ((keysToPlay & 0x800) == 0x800) { // Cs
-		enqueue(&queues[7], SHARP);
+		enqueue(&queues[11], SHARP);
 	}
 	if ((keysToPlay & 0x400) == 0x400) { // D0
-		enqueue(&queues[6], ACTIVE);
+		enqueue(&queues[10], ACTIVE);
 	}
 	if ((keysToPlay & 0x200) == 0x200) { // Ds
-		enqueue(&queues[6], SHARP);
+		enqueue(&queues[9], SHARP);
 	}
 	if ((keysToPlay & 0x100) == 0x100) { // E0
-		enqueue(&queues[5], ACTIVE);
+		enqueue(&queues[8], ACTIVE);
 	}
 	if ((keysToPlay & 0x80) == 0x80) { // F0
-		enqueue(&queues[4], ACTIVE);
+		enqueue(&queues[7], ACTIVE);
 	}
 	if ((keysToPlay & 0x40) == 0x40) { // Fs
-		enqueue(&queues[4], SHARP);
+		enqueue(&queues[6], SHARP);
 	}
 	if ((keysToPlay & 0x20) == 0x20) { // G0
-		enqueue(&queues[3], ACTIVE);
+		enqueue(&queues[5], ACTIVE);
 	}
 	if ((keysToPlay & 0x10) == 0x10) { // Gs
-		enqueue(&queues[3], SHARP);
+		enqueue(&queues[4], SHARP);
 	}
 	if ((keysToPlay & 0x8) == 0x8) { // A0
-		enqueue(&queues[2], ACTIVE);
+		enqueue(&queues[3], ACTIVE);
 	}
 	if ((keysToPlay & 0x4) == 0x4) { // As
 		enqueue(&queues[2], SHARP);

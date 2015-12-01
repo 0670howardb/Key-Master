@@ -5,6 +5,9 @@
 
 struct queue {
 	int queue[QUEUE_LENGTH];
+	int previousQueue[QUEUE_LENGTH];
+	unsigned short color activeColor;
+	unsigned short color sharpColor;
 	int y;
 };
 

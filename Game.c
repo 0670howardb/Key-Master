@@ -17,14 +17,7 @@ short iNote = 0;
 int counter = -10;
 short health = MAX_HEALTH;
 
-struct queue C0Queue;
-struct queue D0Queue;
-struct queue E0Queue;
-struct queue F0Queue;
-struct queue G0Queue;
-struct queue A0Queue;
-struct queue B0Queue;
-struct queue C1Queue;
+struct queue queues[NUMBER_OF_QUEUES];
 
 // Performs Game Logic
 void SysTick_Handler (void) {           
@@ -58,5 +51,9 @@ void compareTargetAndActual() {
 }
 
 void updateQueues() {
-	
+	int i = 0; 
+	for (i = 0; i < NUMBER_OF_QUEUES; i++) {
+		dequeue(&queues[i]);
+		enqueue(&queues[i], 1);
+	}
 }

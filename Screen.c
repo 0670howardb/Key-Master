@@ -2,6 +2,8 @@
 
 #include "Screen.h"
 #include "GLCD.h"
+#include "Queue.h"
+#include "Game.h"
 
 short render = 1;
 int scaledX = 0;
@@ -21,7 +23,7 @@ void fillSquare(int x, int y) {
 	
 	for (iX = x; iX < x + PIXEL_SIZE; iX++)
 		for (iY = y; iY < y + PIXEL_SIZE; iY++)
-			GLCD_PutPixel(iX, iY);
+			GLCD_PutPixel(iX + 20, iY); // Note: + 20 because 320%30 ~= 20, shift for writing text.
 }
 
 /* This function maps a PIXEL_SIZE block of pixels
@@ -35,5 +37,29 @@ void setupGrid() {
 }
 
 void drawScreen() {
+	
+	int i = 0;
+	int iElement = 0;
+	for (i = 0; i < NUMBER_OF_QUEUES; i++) {
+		for (iElement = 0; iElement < QUEUE_LENGTH; iElement++) {
+			// There are six cases to be concerned about.
+			// The seventh is when they are equal. Do nothing in this case.
+			if (queues[i].queue[iElement] == queues[i].previousQueue[iElement]) {
+				// Do nothing.
+			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == ACTIVE) {
+				fillSquare(iElement, i);
+			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == SHARP) {
+				fillSquare(iElement, i);
+			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == INACTIVE) {
+				fillSquare(iElement, i);
+			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == SHARP) {
+				fillSquare(iElement, i);
+			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == INACTIVE) {
+				fillSquare(iElement, i);
+			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == ACTIVE) {
+				fillSquare(iElement, i);
+			}
+		}
+	}
 	
 }

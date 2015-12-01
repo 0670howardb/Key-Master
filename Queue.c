@@ -19,6 +19,12 @@ int dequeue(struct queue *q) {
 	int i = 0;
 	int returnValue = q->queue[0];
 	
+	// Make a copy of the old queue (for comparing later).
+	for (i = 0; i < QUEUE_LENGTH; i++) {
+		q->previousQueue[i] = q->queue[i];
+	}
+	
+	// Shift everything down
 	for (i = 0; i < QUEUE_LENGTH - 1; i++) {
 		q->queue[i] = q->queue[i+1];
 	}

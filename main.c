@@ -11,22 +11,24 @@
 #include "Game.h"
 #include "Screen.h"
 #include "Queue.h"
+#include "LED.h"
 
 void printKeys(void);
 void printHealth(void);
 
-unsigned char printString[15];
+//unsigned char printString[15];
 
 int main (void) {
   SystemInit();
 	SysTick_Config(SystemCoreClock/100);
 	LCD_Initialization();
 	LCD_Clear(Black);
+	LED_Init();
 	Piano_Init();
 	initQueues();
-	currentState = MENU;
+	currentState = PLAY;
 	
-		
+	
   while (1) {
 		switch (currentState) {
 			case MENU:
@@ -42,6 +44,7 @@ int main (void) {
 			case PLAY:
 				checkKeys();
 				handleKeyPress();
+				LED_MultipleOff(health);
 				if (menuRender) {
 					setupGrid();
 					printKeys();
@@ -79,8 +82,4 @@ void printKeys() {
 	LCD_PutText(10, 248, "D", White, Black);
 	LCD_PutText(10, 272, "C#", White, Black);
 	LCD_PutText(10, 297, "C", White, Black);
-}
-
-void printHealth() {
-
 }

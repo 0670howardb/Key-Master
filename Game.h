@@ -11,6 +11,7 @@ void compareTargetAndActual(void);
 void updateQueues(void);
 
 extern uint16_t keysToPlay;
+extern uint16_t keysToQueue;
 extern short state;
 extern uint16_t keysPressed;
 extern short health;

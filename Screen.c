@@ -30,7 +30,8 @@ void fillSquare(int x, int y, uint16_t color) {
 /* This function maps a PIXEL_SIZE block of pixels
 	 to a single pixel for the scaled value. A scaled 
 	 value is reconverted to the correct pixels in the
-	 fillSquare function is called.
+	 fillSquare function is called. It also draws the
+	 initial grid for the notes.
 */
 void setupGrid() {
 	int x = 0;
@@ -46,6 +47,9 @@ void setupGrid() {
 			fillSquare(x, y, White);
 }
 
+/* This function draws the screen during gameplay. It
+	 does not draw the menu screen or win/lose screens.
+*/
 void drawScreen() {
 	
 	int i = 0;

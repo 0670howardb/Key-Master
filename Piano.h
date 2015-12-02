@@ -6,6 +6,7 @@
 void Piano_Init(void);
 void checkKeys(void);
 void handleKeyPress(void);
+void selectSongFromKeyPress(void);
 
 extern uint16_t keysPressed;
 

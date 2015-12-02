@@ -12,8 +12,7 @@
 #include "Screen.h"
 #include "Queue.h"
 
-void printKeyStatus(void);
-void printTargetAndCurrent(void);
+void printKeys(void);
 void printHealth(void);
 
 unsigned char printString[15];
@@ -24,44 +23,64 @@ int main (void) {
 	LCD_Initialization();
 	LCD_Clear(Black);
 	Piano_Init();
-	setupGrid();
 	initQueues();
+	currentState = MENU;
 	
-	printKeyStatus();
-  while (1) {
-		checkKeys();
-		handleKeyPress();
 		
-		if (render == 1) {
-			updateQueues();
-			drawScreen();
-			render = 0;
-		}		
+  while (1) {
+		switch (currentState) {
+			case MENU:
+				if (menuRender) {
+					drawMenu();
+					menuRender = 0;
+				}
+				checkKeys();
+				handleKeyPress();
+				selectSongFromKeyPress();
+				break;
+			
+			case PLAY:
+				checkKeys();
+				handleKeyPress();
+				if (menuRender) {
+					setupGrid();
+					printKeys();
+					menuRender = 0;
+				}
+				if (render == 1) {
+					updateQueues();
+					drawScreen();
+					render = 0;
+				}	
+				break;
+				
+			case WIN:
+				currentState = MENU;
+				break;
+			
+			case LOSE:
+				currentState = MENU;
+				break;
+		}	
 	}
 }
 
-void printKeyStatus() {
-	LCD_PutText(3, 10, "C", White, Black);
-	LCD_PutText(3, 30, "C#", White, Black);
-	LCD_PutText(3, 50, "D", White, Black);
-	LCD_PutText(3, 70, "D#", White, Black);
-	//GLCD_DisplayString(1, 0, "B");
-	//GLCD_DisplayString(2, 0, "A");
-	//GLCD_DisplayString(3, 0, "G");
-	//GLCD_DisplayString(4, 0, "F");
-	//GLCD_DisplayString(5, 0, "E");
-	//GLCD_DisplayString(6, 0, "D");
-	//GLCD_DisplayString(7, 0, "C");
-}
-
-void printTargetAndCurrent() {
-	//sprintf((char *)printString, "Target : %x         ", keysToPlay);
-	//GLCD_DisplayString(8, 0, printString);
-	//sprintf((char *)printString, "Current: %x         ", keysPressed);
-	//GLCD_DisplayString(9, 0, printString);
+void printKeys() {
+	LCD_PutText(10, 8,   "C", White, Black);
+	LCD_PutText(10, 32,  "B", White, Black);
+	LCD_PutText(10, 56,  "A#", White, Black);
+	LCD_PutText(10, 81,  "A", White, Black);
+	LCD_PutText(10, 104, "G#", White, Black);
+	LCD_PutText(10, 128, "G", White, Black);
+	LCD_PutText(10, 152, "F#", White, Black);
+	LCD_PutText(10, 176, "F", White, Black);
+	LCD_PutText(10, 200, "E", White, Black);
+	LCD_PutText(10, 224, "D#", White, Black);
+	LCD_PutText(10, 248, "D", White, Black);
+	LCD_PutText(10, 272, "C#", White, Black);
+	LCD_PutText(10, 297, "C", White, Black);
 }
 
 void printHealth() {
-	//sprintf((char *)printString, "Health : %d         ", health);
-	//GLCD_DisplayString(7, 0, printString);
+
 }

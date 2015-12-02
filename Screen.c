@@ -5,6 +5,7 @@
 #include "Queue.h"
 #include "Game.h"
 
+short menuRender = 1;
 short render = 1;
 int scaledX = 0;
 int scaledY = 0;
@@ -35,6 +36,8 @@ void setupGrid() {
 	int x = 0;
 	int y = 0;
 	
+	LCD_Clear(Black);
+	
 	scaledX = SCREEN_WIDTH / PIXEL_SIZE;
 	scaledY = SCREEN_HEIGHT / PIXEL_SIZE;
 	
@@ -49,24 +52,28 @@ void drawScreen() {
 	int iElement = 0;
 	for (i = 0; i < NUMBER_OF_QUEUES; i++) {
 		for (iElement = 0; iElement < QUEUE_LENGTH; iElement++) {
-			// There are six cases to be concerned about.
-			// The seventh is when they are equal. Do nothing in this case.
 			if (queues[i].queue[iElement] == queues[i].previousQueue[iElement]) {
 				// Do nothing.
 			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == ACTIVE) {
 				fillSquare(iElement, i, White);
-			} else  if (queues[i].queue[iElement] == INACTIVE && queues[i].previousQueue[iElement] == SHARP) {
-				fillSquare(iElement, i, White);
-			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == INACTIVE) {
+			} else {
 				fillSquare(iElement, i, queues[i].activeColor);
-			} else  if (queues[i].queue[iElement] == ACTIVE && queues[i].previousQueue[iElement] == SHARP) {
-				fillSquare(iElement, i, queues[i].activeColor);
-			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == INACTIVE) {
-				fillSquare(iElement, i, queues[i].sharpColor);
-			} else  if (queues[i].queue[iElement] == SHARP && queues[i].previousQueue[iElement] == ACTIVE) {
-				fillSquare(iElement, i, queues[i].sharpColor);
 			}
 		}
 	}
-	
 }
+
+void drawMenu() {
+	LCD_Clear(White);
+	LCD_PutText(75, 10,  "Key Master!", Black, White);
+	LCD_PutText(65, 40,  "Select a Song!", Black, White);
+	LCD_PutText(5, 70,  "C: Ode to Joy", Black, White);
+	LCD_PutText(5, 100, "D: Marry Had a Little Lamb", Black, White);
+	LCD_PutText(5, 130, "E: Imperial March", Black, White);
+	LCD_PutText(5, 160, "F: Jingle Bells", Black, White);
+	LCD_PutText(5, 190, "G: Do Re Mi (Sound of Music)", Black, White);
+	LCD_PutText(5, 220, "A: Take On Me (Intro)", Black, White);
+	LCD_PutText(5, 250, "B: The Final Countdown", Black, White);
+	LCD_PutText(5, 280, "C: Old McDonald", Black, White);
+}
+	

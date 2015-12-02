@@ -10,12 +10,13 @@
 #define SCALED_Y 13
 
 void fillSquare(int, int, uint16_t color);
-void fillSquareWithSharpSign(int, int, uint16_t color);
 void setupGrid(void);
 void drawScreen(void);
+void drawMenu(void);
 
 extern int scaledX;
 extern int scaledY;
 extern short render;
+extern short menuRender;
 
 #endif 

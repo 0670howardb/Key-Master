@@ -16,8 +16,8 @@ short state = 0;
 short iNote = 0;
 int counter = 0;
 short health = MAX_HEALTH;
-
 struct queue queues[NUMBER_OF_QUEUES];
+enum gameState currentState;
 
 // Performs Game Logic
 void SysTick_Handler(void) {           
@@ -64,13 +64,13 @@ void updateQueues() {
 		enqueue(&queues[12], ACTIVE);
 	}
 	if ((keysToPlay & 0x800) == 0x800) { // Cs
-		enqueue(&queues[11], SHARP);
+		enqueue(&queues[11], ACTIVE);
 	}
 	if ((keysToPlay & 0x400) == 0x400) { // D0
 		enqueue(&queues[10], ACTIVE);
 	}
 	if ((keysToPlay & 0x200) == 0x200) { // Ds
-		enqueue(&queues[9], SHARP);
+		enqueue(&queues[9], ACTIVE);
 	}
 	if ((keysToPlay & 0x100) == 0x100) { // E0
 		enqueue(&queues[8], ACTIVE);
@@ -79,19 +79,19 @@ void updateQueues() {
 		enqueue(&queues[7], ACTIVE);
 	}
 	if ((keysToPlay & 0x40) == 0x40) { // Fs
-		enqueue(&queues[6], SHARP);
+		enqueue(&queues[6], ACTIVE);
 	}
 	if ((keysToPlay & 0x20) == 0x20) { // G0
 		enqueue(&queues[5], ACTIVE);
 	}
 	if ((keysToPlay & 0x10) == 0x10) { // Gs
-		enqueue(&queues[4], SHARP);
+		enqueue(&queues[4], ACTIVE);
 	}
 	if ((keysToPlay & 0x8) == 0x8) { // A0
 		enqueue(&queues[3], ACTIVE);
 	}
 	if ((keysToPlay & 0x4) == 0x4) { // As
-		enqueue(&queues[2], SHARP);
+		enqueue(&queues[2], ACTIVE);
 	}
 	if ((keysToPlay & 0x2) == 0x2) { // B0
 		enqueue(&queues[1], ACTIVE);

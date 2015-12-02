@@ -6,6 +6,8 @@
 
 #include <lpc17xx.h>
 #include "Piano.h"
+#include "Game.h"
+#include "Screen.h"
 
 uint16_t keysPressed = 0;
 
@@ -53,4 +55,30 @@ void handleKeyPress() {
 	               |(E0 << 8 )|(F0 << 7 )|(Fs << 6 )|(G0 << 5)
 	               |(Gs << 4 )|(A0 << 3 )|(As << 2 )|(B0 << 1)
 	               |(C1));
+}
+
+void selectSongFromKeyPress() {
+	
+	if (keysPressed != 0) {
+		menuRender = 1;
+		currentState = PLAY;
+	}
+	
+	if ((keysPressed & 0x1000) == 0x1000) { // C0
+		
+	} else if ((keysPressed & 0x400) == 0x400) { // D0
+
+	} else if ((keysPressed & 0x100) == 0x100) { // E0
+
+	} else if ((keysPressed & 0x80) == 0x80) { // F0
+
+	} else if ((keysPressed & 0x20) == 0x20) { // G0
+
+	} else if ((keysPressed & 0x8) == 0x8) { // A0
+
+	} else if ((keysPressed & 0x2) == 0x2) { // B0
+
+	}	else if ((keysPressed & 0x1) == 0x1) { // C1
+
+	}	
 }

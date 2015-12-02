@@ -18,8 +18,16 @@ extern struct queue queues[];
 
 enum keyType {
 	INACTIVE,
-	ACTIVE,
-	SHARP
+	ACTIVE
 };
+
+enum gameState {
+	MENU,
+	PLAY,
+	WIN,
+	LOSE
+};
+
+extern enum gameState currentState;
 
 #endif

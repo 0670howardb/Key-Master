@@ -22,7 +22,7 @@ int counter = 0;
 short health = MAX_HEALTH;
 struct queue queues[NUMBER_OF_QUEUES];
 enum gameState currentState;
-unsigned char printString[15];
+enum songs currentSong;
 
 // Performs Game Logic
 void SysTick_Handler(void) {           
@@ -35,11 +35,9 @@ void SysTick_Handler(void) {
 			
 			// Reset keysPressed
 			keysPressed &= 0x00000000;
-		
-			// Switch to new note
-			keysToPlay = marryHadALittleLamb[iNote];
-			keysToQueue = marryHadALittleLamb[iNote + 7]; // Start queueing first note of song
-			iNote++;
+	
+			// Switch to new note and check if song is over
+			selectNextNote();
 			
 			counter = 0;
 			render = 1;
@@ -51,17 +49,12 @@ void compareTargetAndActual() {
 	if (keysToPlay == keysPressed) { // Success
 		if (health < MAX_HEALTH) { 
 			health++; 
-			sprintf((char *)printString, "%x", health);
-			LCD_PutText(0, 10, printString, Red, Blue);
-
 		}
 	} else { // Fail
 		health--;
-						sprintf((char *)printString, "%x", health);
-	LCD_PutText(0, 10, printString, Red, Blue);
-	sprintf((char *)printString, "Current: %x", keysPressed);
-	LCD_PutText(0, 30, printString, Red, Blue);
-
+		if (health == 0) {
+			currentState = LOSE;
+		}
 	} 
 }
 
@@ -113,4 +106,90 @@ void updateQueues() {
 	if ((keysToQueue & 0x1) == 0x1) { // C1
 		enqueue(&queues[0], ACTIVE);
 	}	
+}
+
+void resetGameVariables() {
+	initQueues();
+	iNote = 0;
+	keysToPlay = 0;
+	keysToQueue = 0;
+	counter = 0;
+	health = MAX_HEALTH;
+	keysPressed = 0;
+}
+
+void selectNextNote() {
+	// Start queueing first note of song, this is a silly way to do this, and should be modified in a revision.
+	// The plus 7 is necessary because I want to start queueing the first actual note of the song, but it still needs
+	// to be shifted 8 times before it's time to play that note.
+	
+	switch (currentSong) {
+		case ODE_TO_JOY:
+			if (iNote > odeToJoyLength)
+				currentState = WIN;
+			keysToPlay = odeToJoy[iNote];
+			keysToQueue = odeToJoy[iNote + 7];
+			break;
+			
+		case MARRY_HAD_A_LITTLE_LAMB:
+			if (iNote > marryHadALittleLambLength)
+				currentState = WIN;
+			keysToPlay = marryHadALittleLamb[iNote];
+			keysToQueue = marryHadALittleLamb[iNote + 7];
+			break;
+			
+		case IMPERIAL_MARCH:
+			if (iNote > imperialMarchLength)
+			currentState = WIN;
+			keysToPlay = imperialMarch[iNote];
+			keysToQueue = imperialMarch[iNote + 7];						
+			break;
+			
+		case JINGLE_BELLS:
+			if (iNote > jingleBellsLength)
+				currentState = WIN;
+			keysToPlay = jingleBells[iNote];
+			keysToQueue = jingleBells[iNote + 7];						
+			break;
+			
+		case DO_RE_MI:
+			if (iNote > doReMiLength)
+				currentState = WIN;
+			keysToPlay = doReMi[iNote];
+			keysToQueue = doReMi[iNote + 7];			
+			break;
+			
+		case TAKE_ON_ME:
+			if (iNote > takeOnMeLength)
+				currentState = WIN;
+			keysToPlay = takeOnMe[iNote];
+			keysToQueue = takeOnMe[iNote + 7];						
+			break;
+			
+		case THE_FINAL_COUNTDOWN:
+			if (iNote > theFinalCountdownLength)
+				currentState = WIN;
+			keysToPlay = theFinalCountdown[iNote];
+			keysToQueue = theFinalCountdown[iNote + 7];						
+			break;
+			
+		case OLD_MCDONALD:
+			if (iNote > oldMcDonaldLength)
+				currentState = WIN;
+			keysToPlay = oldMcDonald[iNote];
+			keysToQueue = oldMcDonald[iNote + 7];						
+			break;
+	}
+	
+		iNote++;
+}
+
+void displayWinMessage() {
+	LCD_Clear(Black);
+	LCD_PutText(75, 120, "YOU WIN!  :D", White, Black);
+}
+
+void displayLoseMessage() {
+	LCD_Clear(Black);
+	LCD_PutText(75, 120, "YOU LOSE! :(", White, Black);
 }

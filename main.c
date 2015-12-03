@@ -15,7 +15,7 @@
 
 void printKeys(void);
 void printHealth(void);
-
+void dirtyDelay(int);
 //unsigned char printString[15];
 
 int main (void) {
@@ -25,8 +25,7 @@ int main (void) {
 	LCD_Clear(Black);
 	LED_Init();
 	Piano_Init();
-	initQueues();
-	currentState = PLAY;
+	currentState = MENU;
 	
 	
   while (1) {
@@ -34,6 +33,7 @@ int main (void) {
 			case MENU:
 				if (menuRender) {
 					drawMenu();
+					resetGameVariables();
 					menuRender = 0;
 				}
 				checkKeys();
@@ -59,10 +59,17 @@ int main (void) {
 				
 			case WIN:
 				currentState = MENU;
+				displayWinMessage();
+				menuRender = 1;
+				dirtyDelay(1);
 				break;
 			
 			case LOSE:
 				currentState = MENU;
+				resetGameVariables();
+				displayLoseMessage();
+				menuRender = 1;
+				dirtyDelay(1);
 				break;
 		}	
 	}
@@ -83,3 +90,11 @@ void printKeys() {
 	LCD_PutText(10, 272, "C#", White, Black);
 	LCD_PutText(10, 297, "C", White, Black);
 }
+
+void dirtyDelay(int time) {
+	int i = 0;
+	for (i = 0; i < time * 25000000; i++) {
+		// Do nothing. Dirty delay.
+	}
+}
+

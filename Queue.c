@@ -35,6 +35,9 @@ int dequeue(struct queue *q) {
 }
 
 void initQueues() {
+	int i = 0;
+	int j = 0;
+	
 	queues[12].activeColor = Yellow;
 	queues[11].activeColor = Orange;
 	queues[10].activeColor = Red;
@@ -48,4 +51,10 @@ void initQueues() {
 	queues[2].activeColor  = Purple;
 	queues[1].activeColor  = Olive;
 	queues[0].activeColor  = Maroon;
+	
+	for (i = 0; i < NUMBER_OF_QUEUES; i++) {
+		for (j = 0; j < QUEUE_LENGTH; j++) {
+			queues[i].queue[j] = 0;
+		}
+	}
 }

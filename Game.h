@@ -9,6 +9,11 @@
 
 void compareTargetAndActual(void);
 void updateQueues(void);
+void resetGameVariables(void);
+void selectNextNote(void);
+void displayWinMessage(void);
+void displayLoseMessage(void);
+void checkIfSongIsOver(void);
 
 extern uint16_t keysToPlay;
 extern uint16_t keysToQueue;
@@ -29,6 +34,18 @@ enum gameState {
 	LOSE
 };
 
+enum songs {
+	ODE_TO_JOY,
+	MARRY_HAD_A_LITTLE_LAMB,
+	IMPERIAL_MARCH,
+	JINGLE_BELLS,
+	DO_RE_MI,
+	TAKE_ON_ME,
+	THE_FINAL_COUNTDOWN,
+	OLD_MCDONALD
+};
+
+extern enum songs currentSong;
 extern enum gameState currentState;
 
 #endif

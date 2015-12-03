@@ -65,20 +65,20 @@ void selectSongFromKeyPress() {
 	}
 	
 	if ((keysPressed & 0x1000) == 0x1000) { // C0
-		
+		currentSong = ODE_TO_JOY;
 	} else if ((keysPressed & 0x400) == 0x400) { // D0
-
+		currentSong = MARRY_HAD_A_LITTLE_LAMB;
 	} else if ((keysPressed & 0x100) == 0x100) { // E0
-
+		currentSong = IMPERIAL_MARCH;
 	} else if ((keysPressed & 0x80) == 0x80) { // F0
-
+		currentSong = JINGLE_BELLS;
 	} else if ((keysPressed & 0x20) == 0x20) { // G0
-
+		currentSong = DO_RE_MI;
 	} else if ((keysPressed & 0x8) == 0x8) { // A0
-
+		currentSong = TAKE_ON_ME;
 	} else if ((keysPressed & 0x2) == 0x2) { // B0
-
+		currentSong = THE_FINAL_COUNTDOWN;
 	}	else if ((keysPressed & 0x1) == 0x1) { // C1
-
+		currentSong = OLD_MCDONALD;
 	}	
 }

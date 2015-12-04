@@ -125,56 +125,56 @@ void selectNextNote() {
 	
 	switch (currentSong) {
 		case ODE_TO_JOY:
-			if (iNote > odeToJoyLength)
+			if (iNote+3 > odeToJoyLength)
 				currentState = WIN;
 			keysToPlay = odeToJoy[iNote];
 			keysToQueue = odeToJoy[iNote + 7];
 			break;
 			
 		case MARRY_HAD_A_LITTLE_LAMB:
-			if (iNote > marryHadALittleLambLength)
+			if (iNote+3 > marryHadALittleLambLength)
 				currentState = WIN;
 			keysToPlay = marryHadALittleLamb[iNote];
 			keysToQueue = marryHadALittleLamb[iNote + 7];
 			break;
 			
 		case IMPERIAL_MARCH:
-			if (iNote > imperialMarchLength)
+			if (iNote+3 > imperialMarchLength)
 			currentState = WIN;
 			keysToPlay = imperialMarch[iNote];
 			keysToQueue = imperialMarch[iNote + 7];						
 			break;
 			
 		case JINGLE_BELLS:
-			if (iNote > jingleBellsLength)
+			if (iNote+3 > jingleBellsLength)
 				currentState = WIN;
 			keysToPlay = jingleBells[iNote];
 			keysToQueue = jingleBells[iNote + 7];						
 			break;
 			
 		case DO_RE_MI:
-			if (iNote > doReMiLength)
+			if (iNote+3 > doReMiLength)
 				currentState = WIN;
 			keysToPlay = doReMi[iNote];
 			keysToQueue = doReMi[iNote + 7];			
 			break;
 			
 		case TAKE_ON_ME:
-			if (iNote > takeOnMeLength)
+			if (iNote+3 > takeOnMeLength)
 				currentState = WIN;
 			keysToPlay = takeOnMe[iNote];
 			keysToQueue = takeOnMe[iNote + 7];						
 			break;
 			
 		case THE_FINAL_COUNTDOWN:
-			if (iNote > theFinalCountdownLength)
+			if (iNote+3 > theFinalCountdownLength)
 				currentState = WIN;
 			keysToPlay = theFinalCountdown[iNote];
 			keysToQueue = theFinalCountdown[iNote + 7];						
 			break;
 			
 		case OLD_MCDONALD:
-			if (iNote > oldMcDonaldLength)
+			if (iNote+3 > oldMcDonaldLength)
 				currentState = WIN;
 			keysToPlay = oldMcDonald[iNote];
 			keysToQueue = oldMcDonald[iNote + 7];						

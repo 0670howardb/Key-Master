@@ -36,7 +36,7 @@ enum gameState {
 
 enum songs {
 	ODE_TO_JOY,
-	MARRY_HAD_A_LITTLE_LAMB,
+	MARY_HAD_A_LITTLE_LAMB,
 	IMPERIAL_MARCH,
 	JINGLE_BELLS,
 	DO_RE_MI,

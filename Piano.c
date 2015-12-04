@@ -8,6 +8,7 @@
 #include "Piano.h"
 #include "Game.h"
 #include "Screen.h"
+#include "Sound.h"
 
 uint16_t keysPressed = 0;
 
@@ -48,6 +49,10 @@ void checkKeys() {
 	As = ~(LPC_GPIO1->FIOPIN >> 21) & KEY_MASK;
 	B0 = ~(LPC_GPIO1->FIOPIN >> 20) & KEY_MASK;
 	C1 = ~(LPC_GPIO1->FIOPIN >> 19) & KEY_MASK;
+	
+	if (C0) {
+		playSound(GusSinTable);
+	}
 }
 
 void handleKeyPress() {
@@ -66,8 +71,10 @@ void selectSongFromKeyPress() {
 	
 	if ((keysPressed & 0x1000) == 0x1000) { // C0
 		currentSong = ODE_TO_JOY;
+		SysTick_Config(SystemCoreClock/200);
 	} else if ((keysPressed & 0x400) == 0x400) { // D0
-		currentSong = MARRY_HAD_A_LITTLE_LAMB;
+		currentSong = MARY_HAD_A_LITTLE_LAMB;
+		SysTick_Config(SystemCoreClock/100);
 	} else if ((keysPressed & 0x100) == 0x100) { // E0
 		currentSong = IMPERIAL_MARCH;
 	} else if ((keysPressed & 0x80) == 0x80) { // F0

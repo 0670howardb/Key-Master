@@ -131,11 +131,11 @@ void selectNextNote() {
 			keysToQueue = odeToJoy[iNote + 7];
 			break;
 			
-		case MARRY_HAD_A_LITTLE_LAMB:
-			if (iNote+3 > marryHadALittleLambLength)
+		case MARY_HAD_A_LITTLE_LAMB:
+			if (iNote+3 > maryHadALittleLambLength)
 				currentState = WIN;
-			keysToPlay = marryHadALittleLamb[iNote];
-			keysToQueue = marryHadALittleLamb[iNote + 7];
+			keysToPlay = maryHadALittleLamb[iNote];
+			keysToQueue = maryHadALittleLamb[iNote + 7];
 			break;
 			
 		case IMPERIAL_MARCH:

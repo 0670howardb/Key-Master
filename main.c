@@ -12,6 +12,7 @@
 #include "Screen.h"
 #include "Queue.h"
 #include "LED.h"
+#include "Sound.h"
 
 void printKeys(void);
 void printHealth(void);
@@ -20,11 +21,12 @@ void dirtyDelay(int);
 
 int main (void) {
   SystemInit();
-	SysTick_Config(SystemCoreClock/100);
+	SysTick_Config(SystemCoreClock/200);
 	LCD_Initialization();
 	LCD_Clear(Black);
 	LED_Init();
 	Piano_Init();
+	DACInit();
 	currentState = MENU;
 	
 	
@@ -48,6 +50,7 @@ int main (void) {
 				if (menuRender) {
 					setupGrid();
 					printKeys();
+					resetGameVariables();
 					menuRender = 0;
 				}
 				if (render == 1) {

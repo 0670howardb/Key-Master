@@ -17,7 +17,6 @@
 void printKeys(void);
 void printHealth(void);
 void dirtyDelay(int);
-//unsigned char printString[15];
 
 int main (void) {
   SystemInit();
@@ -29,7 +28,7 @@ int main (void) {
 	DACInit();
 	currentState = MENU;
 	
-	
+	// GAME LOOP, forever
   while (1) {
 		switch (currentState) {
 			case MENU:

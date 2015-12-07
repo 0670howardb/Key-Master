@@ -76,7 +76,7 @@ void drawMenu() {
 	LCD_PutText(5 , 130, "E: Imperial March", Black, White);
 	LCD_PutText(5 , 160, "F: Jingle Bells", Black, White);
 	LCD_PutText(5 , 190, "G: Do Re Mi (Sound of Music)", Black, White);
-	LCD_PutText(5 , 220, "A: Take On Me (Intro)", Black, White);
+	LCD_PutText(5 , 220, "A: Heart and Soul", Black, White);
 	LCD_PutText(5 , 250, "B: The Final Countdown", Black, White);
 	LCD_PutText(5 , 280, "C: Old McDonald", Black, White);
 }

@@ -6,7 +6,7 @@ extern uint16_t maryHadALittleLamb[];
 extern uint16_t imperialMarch[];
 extern uint16_t jingleBells[];
 extern uint16_t doReMi[];
-extern uint16_t takeOnMe[];
+extern uint16_t heartAndSoul[];
 extern uint16_t theFinalCountdown[];
 extern uint16_t oldMcDonald[];
 	
@@ -15,7 +15,7 @@ extern int maryHadALittleLambLength;
 extern int imperialMarchLength;
 extern int jingleBellsLength;
 extern int doReMiLength;
-extern int takeOnMeLength;
+extern int heartAndSoulLength;
 extern int theFinalCountdownLength;
 extern int oldMcDonaldLength;
 	

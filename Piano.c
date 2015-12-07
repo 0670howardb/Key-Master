@@ -82,7 +82,7 @@ void selectSongFromKeyPress() {
 	} else if ((keysPressed & 0x20) == 0x20) { // G0
 		currentSong = DO_RE_MI;
 	} else if ((keysPressed & 0x8) == 0x8) { // A0
-		currentSong = TAKE_ON_ME;
+		currentSong = HEART_AND_SOUL;
 	} else if ((keysPressed & 0x2) == 0x2) { // B0
 		currentSong = THE_FINAL_COUNTDOWN;
 	}	else if ((keysPressed & 0x1) == 0x1) { // C1

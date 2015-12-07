@@ -159,11 +159,11 @@ void selectNextNote() {
 			keysToQueue = doReMi[iNote + 7];			
 			break;
 			
-		case TAKE_ON_ME:
-			if (iNote+3 > takeOnMeLength)
+		case HEART_AND_SOUL:
+			if (iNote+3 > heartAndSoulLength)
 				currentState = WIN;
-			keysToPlay = takeOnMe[iNote];
-			keysToQueue = takeOnMe[iNote + 7];						
+			keysToPlay = heartAndSoul[iNote];
+			keysToQueue = heartAndSoul[iNote + 7];						
 			break;
 			
 		case THE_FINAL_COUNTDOWN:

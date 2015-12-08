@@ -51,7 +51,43 @@ void checkKeys() {
 	C1 = ~(LPC_GPIO1->FIOPIN >> 19) & KEY_MASK;
 	
 	if (C0) {
-		playSound(GusSinTable);
+		playSound(53);
+	}
+	else if (Cs) {
+		playSound(56);
+	}
+	else if (D0) {
+		playSound(60);
+	}
+	else if (Ds) {
+		playSound(63);
+	}
+	else if (E0) {
+		playSound(66);
+	}
+	else if (F0) {
+		playSound(70);
+	}
+	else if (Fs) {
+		playSound(73);
+	}
+	else if (G0) {
+		playSound(78);
+	}
+	else if (Gs) {
+		playSound(82);
+	}
+	else if (A0) {
+		playSound(87);
+	}
+	else if (As) {
+		playSound(92);
+	}
+	else if (B0) {
+		playSound(98);
+	}
+	else if (C1) {
+		playSound(103);
 	}
 }
 

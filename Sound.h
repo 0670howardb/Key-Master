@@ -4,7 +4,8 @@
 #include <LPC17xx.h>
 
 void DACInit(void);
-void playSound(uint16_t[]);
+void playSound(int);
+extern uint16_t pitch;
 
 /*
 extern uint16_t c0Pitch;
@@ -22,6 +23,6 @@ extern uint16_t bPitch;
 extern uint16_t c1Pitch;
 */
 
-extern uint16_t GusSinTable[];
+extern int sinWave[];
 
 #endif

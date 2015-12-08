@@ -13,6 +13,7 @@
 #include "Queue.h"
 #include "LED.h"
 #include "GLCD.h"
+#include "ADC.h"
 
 uint16_t keysToPlay = 0;
 uint16_t keysToQueue = 0;
@@ -23,11 +24,16 @@ short health = MAX_HEALTH;
 struct queue queues[NUMBER_OF_QUEUES];
 enum gameState currentState;
 enum songs currentSong;
+uint16_t adcValue;
+char data[12] = {0};
 
 // Performs Game Logic
 void SysTick_Handler(void) {           
 	if (currentState == PLAY) {
-		if (counter != 100) {
+		
+		adcValue = ADC_Get()/50 + 20; // map adc to values between 20 and 100
+		
+		if (counter <= adcValue) {
 			counter++;
 		} else {
 			// Check if note played is right.
@@ -38,7 +44,6 @@ void SysTick_Handler(void) {
 	
 			// Switch to new note and check if song is over
 			selectNextNote();
-			
 			counter = 0;
 			render = 1;
 		}
@@ -192,4 +197,10 @@ void displayWinMessage() {
 void displayLoseMessage() {
 	LCD_Clear(Black);
 	LCD_PutText(75, 120, "YOU LOSE! :(", White, Black);
+}
+
+void ADC_IRQHandler(void) 
+{
+  volatile uint32_t adstat;
+  adstat = LPC_ADC->ADSTAT;  // Reading ADC clears interrupt;
 }

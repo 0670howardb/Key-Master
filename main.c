@@ -13,6 +13,7 @@
 #include "Queue.h"
 #include "LED.h"
 #include "Sound.h"
+#include "ADC.h"
 
 void printKeys(void);
 void printHealth(void);
@@ -20,7 +21,8 @@ void dirtyDelay(int);
 
 int main (void) {
   SystemInit();
-	SysTick_Config(SystemCoreClock/200);
+	SysTick_Config(SystemCoreClock/100);
+	ADC_Init(); 
 	LCD_Initialization();
 	LCD_Clear(Black);
 	LED_Init();
@@ -52,6 +54,7 @@ int main (void) {
 					resetGameVariables();
 					menuRender = 0;
 				}
+								
 				if (render == 1) {
 					updateQueues();
 					drawScreen();

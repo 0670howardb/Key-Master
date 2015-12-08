@@ -21,6 +21,7 @@ extern short state;
 extern uint16_t keysPressed;
 extern short health;
 extern struct queue queues[];
+extern uint16_t adcValue;
 
 enum keyType {
 	INACTIVE,

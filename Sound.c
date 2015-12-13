@@ -12,6 +12,7 @@
 
 uint64_t pitch = 0;
 
+/* Table of sin values, used for creating the desired pitches */
 int sinWave[1024] = 
 {
   0, 3, 5, 8, 10, 13, 15, 18, 20, 23, 25, 28, 30, 33, 35, 38, 40, 43, 45, 48, 50, 53, 
@@ -81,7 +82,7 @@ int sinWave[1024] =
 	-28, -25, -23, -20, -18, -15, -13, -10, -8, -5, -3
 };
 
-
+/* Init the DAC so we can play sound on the speaker. */
 void DACInit( void ) {
   LPC_PINCON->PINSEL1 = 0x00200000;  // set P0.26 to DAC output;  
   LPC_DAC->DACCNTVAL = 0x00FF;
@@ -89,11 +90,14 @@ void DACInit( void ) {
   return;
 }
 
+/* Play a specified sound. Note: The input variable is not really a frequency.
+   This function needs work.
+*/
 void playSound(int freq) {
 	uint64_t i = 0;
 	for (i = 0; i < 22056; i++) {
 		int freq1 = freq*i*(1024./44111);
 		pitch = 0.5*sinWave[freq1%1024];
-		LPC_DAC->DACR = (pitch << 8);
+		LPC_DAC->DACR = (pitch << 8); // 8 bit sound
 	}
 }

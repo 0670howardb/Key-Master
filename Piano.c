@@ -35,6 +35,9 @@ void Piano_Init() {
 	LPC_GPIO0->FIODIR &= ~((1 <<  4)|(1 <<  6));
 }
 
+/* Check which keys were pressed, if any, and play the
+   appropriate sounds.
+*/
 void checkKeys() {
 	C0 = ~(LPC_GPIO2->FIOPIN >> 12) & KEY_MASK;
 	Cs = ~(LPC_GPIO2->FIOPIN >> 11) & KEY_MASK;
@@ -91,6 +94,9 @@ void checkKeys() {
 	}
 }
 
+/* Depending on which keys were pressed, set the 
+   specific bits in the keysPressed variable.
+*/
 void handleKeyPress() {
 	keysPressed |= ((C0 << 12)|(Cs << 11)|(D0 << 10)|(Ds << 9)
 	               |(E0 << 8 )|(F0 << 7 )|(Fs << 6 )|(G0 << 5)
@@ -98,6 +104,9 @@ void handleKeyPress() {
 	               |(C1));
 }
 
+/* Select a song in the main menu depending on which
+   key was pressed.
+*/
 void selectSongFromKeyPress() {
 	
 	if (keysPressed != 0) {

@@ -50,6 +50,9 @@ void SysTick_Handler(void) {
 	}
 }
 
+/* Check if the notes played matches the notes that
+   should be played given the song selected.
+*/
 void compareTargetAndActual() {
 	if (keysToPlay == keysPressed) { // Success
 		if (health < MAX_HEALTH) { 
@@ -63,6 +66,9 @@ void compareTargetAndActual() {
 	} 
 }
 
+/* From the selected song and the current position in the song, 
+   add the next note to the queue.
+*/
 void updateQueues() {
 	
 	int i = 0; 
@@ -113,6 +119,7 @@ void updateQueues() {
 	}	
 }
 
+/* Clear all states when the game is over */
 void resetGameVariables() {
 	initQueues();
 	iNote = 0;
@@ -123,6 +130,7 @@ void resetGameVariables() {
 	keysPressed = 0;
 }
 
+/* Set the next note of the song */
 void selectNextNote() {
 	// Start queueing first note of song, this is a silly way to do this, and should be modified in a revision.
 	// The plus 7 is necessary because I want to start queueing the first actual note of the song, but it still needs
@@ -199,6 +207,7 @@ void displayLoseMessage() {
 	LCD_PutText(75, 120, "YOU LOSE! :(", White, Black);
 }
 
+/* ADC Interrupt Service Routine: Used to set the game's speed */
 void ADC_IRQHandler(void) 
 {
   volatile uint32_t adstat;

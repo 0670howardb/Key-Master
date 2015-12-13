@@ -67,6 +67,7 @@ void drawScreen() {
 	}
 }
 
+/* Draw the menu screen, centered horizontally. */
 void drawMenu() {
 	LCD_Clear(White);
 	LCD_PutText(75, 10,  "Key Master!", Black, White);

@@ -34,6 +34,7 @@ int dequeue(struct queue *q) {
 
 }
 
+/* Set the color of the queues and zero everything out */
 void initQueues() {
 	int i = 0;
 	int j = 0;

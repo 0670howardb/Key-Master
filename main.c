@@ -19,6 +19,7 @@ void printKeys(void);
 void printHealth(void);
 void dirtyDelay(int);
 
+/* main program */
 int main (void) {
   SystemInit();
 	SysTick_Config(SystemCoreClock/100);
@@ -80,6 +81,7 @@ int main (void) {
 	}
 }
 
+/* Print the label for each key in the game screen */
 void printKeys() {
 	LCD_PutText(10, 8,   "C", White, Black);
 	LCD_PutText(10, 32,  "B", White, Black);
@@ -96,6 +98,7 @@ void printKeys() {
 	LCD_PutText(10, 297, "C", White, Black);
 }
 
+/* Simple software delay */
 void dirtyDelay(int time) {
 	int i = 0;
 	for (i = 0; i < time * 25000000; i++) {
